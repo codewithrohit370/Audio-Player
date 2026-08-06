@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/toggle.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/player.css">
+    <link rel="stylesheet" href="css/media.css">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <i class="fa-solid fa-music"></i>
+            <h2>Music Player</h2>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search Songs...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <div class="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+
+    </header>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+
+    <div class="layout">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <h2>Playlist</h2>
+
+            <div class="song-list">
+
+
+            </div>
+
+        </aside>
+
+        <!-- ================= PLAYER ================= -->
+
+        <div class="Audio-Container">
+
+            <img class="album-cover" src="images/ChatGPT Image Aug 6, 2026, 10_37_58 PM.png">
+
+            <div class="player-content">
+
+                <!-- Desktop -->
+                <div class="desktop-player">
+
+                    <div class="song-details">
+                        <h2 class="song-name">Song Name</h2>
+                        <p class="artist-name">Artist</p>
+                    </div>
+
+                    <audio class="audio">
+                        <source src="">
+                    </audio>
+
+                    <input class="song-time" type="range">
+
+                    <div class="time-info">
+                        <span class="current-time">0:00</span>
+                        <span class="duration">0:00</span>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="previousBtn"><i class="fa-solid fa-backward-step"></i></button>
+                        <button class="playBtn"><i class="fa-solid fa-play"></i></button>
+                        <button class="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
+                    </div>
+
+                </div>
+
+                <!-- Mobile -->
+                <div class="mobile-player">
+
+                    <span class="current-time">0:00</span>
+
+                    <input class="song-time" type="range">
+
+                    <span class="duration">0:00</span>
+
+                    <button class="playBtn"><i class="fa-solid fa-play"></i></button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>

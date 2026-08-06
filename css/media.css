@@ -1,0 +1,108 @@
+@media(max-width:768px){
+
+.layout{
+    display:block;
+    margin-top:70px;
+}
+
+.sidebar{
+    width:100%;
+    height:calc(100vh - 70px - 95px);
+    padding:15px;
+    overflow-y:auto;
+    border:none;
+}
+
+.sidebar::-webkit-scrollbar{
+    display:none;
+}
+
+.Audio-Container{
+
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    margin:0;
+    padding:10px;
+
+    background:#181818;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    border-radius:15px;
+}
+
+/* Album */
+
+.album-cover{
+    width:55px;
+    height:55px;
+}
+
+/* Hide Desktop */
+
+.desktop-player{
+    display:none;
+}
+
+/* Show Mobile */
+
+.mobile-player{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:1;
+}
+
+/* Time */
+
+.mobile-player .current-time,
+.mobile-player .duration{
+
+    color:#bdbdbd;
+    font-size:11px;
+
+    white-space:nowrap;
+}
+
+/* Slider */
+
+.mobile-player .song-time{
+    flex:1;
+}
+
+/* Play */
+
+.mobile-player .playBtn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ff00ff;
+    color:white;
+
+    font-size:18px;
+}
+
+/* Header */
+
+.search-box{
+    display:none;
+}
+
+.header{
+    padding:0 18px;
+}
+
+.logo h2{
+    font-size:22px;
+}
+
+}
