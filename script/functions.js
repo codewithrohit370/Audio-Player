@@ -96,6 +96,16 @@ export function randerSong(activeSong, songid , onSongEnd) {
     const ranges = document.querySelectorAll(".song-time");
     const currentTimes = document.querySelectorAll(".current-time");
     const durations = document.querySelectorAll(".duration");
+    const nextSong = document.querySelector('.nextBtn');
+    const previousBtn = document.querySelector(".previousBtn")
+
+    nextSong.addEventListener('click',()=>{
+        onSongEnd(songid);
+    })
+
+    previousBtn.addEventListener('click',()=>{
+        onSongEnd(songid-2)
+    });
 
     currentSong.play();
     playBtns.forEach(btn => {

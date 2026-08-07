@@ -73,6 +73,9 @@
         if (newSongid > songs.length) {
             newSongid = 1;
         }
+        if(newSongid<1){
+            newSongid = songs.length
+        }
 
         playSong(newSongid);
 
