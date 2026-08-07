@@ -78,7 +78,9 @@ export function songPlay(songid) {
 
                     <span class="duration">0:00</span>
 
+                    <button class="previousBtn"><i class="fa-solid fa-backward-step"></i></button>
                     <button class="playBtn"><i class="fa-solid fa-play"></i></button>
+                    <button class="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
                 </div>
 
             </div>
@@ -96,16 +98,20 @@ export function randerSong(activeSong, songid , onSongEnd) {
     const ranges = document.querySelectorAll(".song-time");
     const currentTimes = document.querySelectorAll(".current-time");
     const durations = document.querySelectorAll(".duration");
-    const nextSong = document.querySelector('.nextBtn');
-    const previousBtn = document.querySelector(".previousBtn")
+    const nextSong = document.querySelectorAll('.nextBtn');
+    const previousBtn = document.querySelectorAll(".previousBtn")
 
-    nextSong.addEventListener('click',()=>{
+    nextSong.forEach((songBtn)=>{
+        songBtn.addEventListener('click',()=>{
         onSongEnd(songid);
-    })
+    });
+});
 
-    previousBtn.addEventListener('click',()=>{
+    previousBtn.forEach((songBtn)=>{
+        songBtn.addEventListener('click',()=>{
         onSongEnd(songid-2)
     });
+});
 
     currentSong.play();
     playBtns.forEach(btn => {
