@@ -60,10 +60,25 @@ export function songPlay(songid) {
                     </div>
 
                     <div class="buttons">
-                        <button class="previousBtn"><i class="fa-solid fa-backward-step"></i></button>
-                        <button class="playBtn"><i class="fa-solid fa-play"></i></button>
-                        <button class="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
-                        <button class="suffleBtn">Suffle</button>
+
+                        <button class="suffleBtn"><i class="fa-solid fa-shuffle"></i></button>
+
+                        <div class="main-buttons">
+                            <button class="previousBtn">
+                                <i class="fa-solid fa-backward-step"></i>
+                            </button>
+
+                            <button class="playBtn">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button class="nextBtn">
+                                <i class="fa-solid fa-forward-step"></i>
+                            </button>
+                        </div>
+
+                        <button class="loopSong"><i class="fa-solid fa-repeat"></i></button>
+
                     </div>
 
                 </div>
@@ -80,6 +95,7 @@ export function songPlay(songid) {
                     <button class="previousBtn"><i class="fa-solid fa-backward-step"></i></button>
                     <button class="playBtn"><i class="fa-solid fa-play"></i></button>
                     <button class="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
+
                 </div>
 
             </div>
@@ -107,12 +123,17 @@ export function randerSong(activeSong, songid , onSongEnd) {
 });
 
 const suffleBtn = document.querySelector(".suffleBtn");
+if (autoSuffleBtn) {
+    suffleBtn.classList.add("suffleBtnActive");
+}
 
 suffleBtn.addEventListener("click", () => {
     autoSuffleBtn = !autoSuffleBtn;
-
-    console.log("Shuffle:", autoSuffleBtn);
-    onSongEnd(AutoSuffle() - 1)
+    console.log(autoSuffleBtn)
+    suffleBtn.classList.toggle(
+        "suffleBtnActive",
+        autoSuffleBtn
+    );
 
 });
 
