@@ -68,3 +68,7 @@
     color: #8f98a5;
     font-size: 13px;
 }
+
+.active-song{
+    color: rgb(101, 255, 101);
+}
