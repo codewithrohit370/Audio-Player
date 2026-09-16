@@ -1,4 +1,4 @@
-import { playAndPauseSong, formatTime, songPlay, randerSong } from "./script/functions.js";
+import { playAndPauseSong, formatTime, songPlay, randerSong, toggleShuffle, toggleLoop } from "./script/functions.js";
 import { songs } from "./script/song.js";
 
 
@@ -8,6 +8,7 @@ let currentSong = null;
 let currentPlayBtn = null;
 let activeSong = null;
 let songID = null;
+
 
 themeBtn.addEventListener("click", () => {
 
@@ -86,6 +87,19 @@ function playSong(songID) {
     document.querySelector(".Audio-Container").innerHTML = songPlay(songID);
     currentSong = document.querySelector(".audio");
 
+    const currentSongData = songs.find(
+        song => song.songId === songID
+    );
+
+    document.querySelector(".full-album-cover").src =
+        currentSongData.songImage;
+
+    document.querySelector(".full-song-name").innerText =
+        currentSongData.songName;
+
+    document.querySelector(".full-artist-name").innerText =
+        currentSongData.ArtistName;
+
     randerSong(activeSong, songID, (currentId) => {
 
         let newSongid = currentId + 1;
@@ -101,3 +115,47 @@ function playSong(songID) {
 
     });
 }
+
+document.querySelector(".Audio-Container").addEventListener("click", (event) => {
+
+    // Agar button, range ya audio par click hua hai
+    if (
+        event.target.closest("button") ||
+        event.target.closest("input") ||
+        event.target.closest("audio")
+    ) {
+        return;
+    }
+
+    document.querySelector(".full-player").classList.add("active");
+
+});
+
+const closePlayer = document.querySelector(".close-player");
+const fullPlayer = document.querySelector(".full-player");
+
+closePlayer.addEventListener("click", () => {
+    fullPlayer.classList.remove("active");
+});
+
+const fullShuffle = document.querySelector(".full-shuffle");
+const fullLoop = document.querySelector(".full-loop");
+
+fullShuffle.addEventListener("click", () => {
+
+    const state = toggleShuffle();
+
+    fullShuffle.classList.toggle("active", state.shuffle);
+    fullLoop.classList.toggle("active", state.loop);
+
+});
+
+fullLoop.addEventListener("click", () => {
+
+    const state = toggleLoop();
+
+    fullShuffle.classList.toggle("active", state.shuffle);
+    fullLoop.classList.toggle("active", state.loop);
+
+});
+

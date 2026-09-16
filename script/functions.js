@@ -116,17 +116,60 @@ export function randerSong(activeSong, songid, onSongEnd) {
     const durations = document.querySelectorAll(".duration");
     const nextSong = document.querySelectorAll('.nextBtn');
     const previousBtn = document.querySelectorAll(".previousBtn")
+    const fullPlayer = document.querySelector(".full-player");
+
+    const fullPlay = document.querySelector(".full-play");
+    const fullNext = document.querySelector(".full-next");
+    const fullPrevious = document.querySelector(".full-previous");
+
+    const fullRange = document.querySelector(".full-song-time");
+
+    const fullCurrentTime = document.querySelector(".full-current-time");
+    const fullDuration = document.querySelector(".full-duration");
+
+    fullPlay.onclick = () => {
+        playAndPauseSong(currentSong);
+    };
+
+    fullNext.onclick = () => {
+        onSongEnd(songid );
+    };
+
+    fullPrevious.onclick = () => {
+        onSongEnd(songid - 2);
+    };
+
+    fullRange.oninput = () => {
+        if (!currentSong.duration) return;
+        currentSong.currentTime =
+            (fullRange.value / 100) * currentSong.duration;
+    };
 
     currentSong.addEventListener("play", () => {
+
         playBtns.forEach(btn => {
             btn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
         });
+
+        if (fullPlay) {
+            fullPlay.innerHTML =
+                `<i class="fa-solid fa-pause"></i>`;
+        }
+
     });
 
+
     currentSong.addEventListener("pause", () => {
+
         playBtns.forEach(btn => {
             btn.innerHTML = `<i class="fa-solid fa-play"></i>`;
         });
+
+        if (fullPlay) {
+            fullPlay.innerHTML =
+                `<i class="fa-solid fa-play"></i>`;
+        }
+
     });
 
 
@@ -191,29 +234,53 @@ export function randerSong(activeSong, songid, onSongEnd) {
     });
 
     currentSong.addEventListener("loadedmetadata", () => {
-        durations.forEach(duration => {
-            duration.innerText = formatTime(currentSong.duration);
+
+        const duration = formatTime(currentSong.duration);
+
+        durations.forEach(time => {
+            time.innerText = duration;
         });
+
+        if (fullDuration) {
+            fullDuration.innerText = duration;
+        }
+
     });
 
     currentSong.addEventListener("timeupdate", () => {
 
-        if (currentSong.duration) {
+        if (!currentSong.duration) return;
 
-            const value =
-                (currentSong.currentTime / currentSong.duration) * 100;
+        const value =
+            (currentSong.currentTime / currentSong.duration) * 100;
 
-            ranges.forEach(range => {
-                range.value = value;
-            });
+        // Normal player
+        ranges.forEach(range => {
+            range.value = value;
+        });
 
-            currentTimes.forEach(time => {
-                time.innerText = formatTime(currentSong.currentTime);
-            });
+        currentTimes.forEach(time => {
+            time.innerText = formatTime(currentSong.currentTime);
+        });
 
-            durations.forEach(time => {
-                time.innerText = formatTime(currentSong.duration);
-            });
+        durations.forEach(time => {
+            time.innerText = formatTime(currentSong.duration);
+        });
+
+
+        // Full player
+        if (fullRange) {
+            fullRange.value = value;
+        }
+
+        if (fullCurrentTime) {
+            fullCurrentTime.innerText =
+                formatTime(currentSong.currentTime);
+        }
+
+        if (fullDuration) {
+            fullDuration.innerText =
+                formatTime(currentSong.duration);
         }
 
     });
@@ -253,6 +320,32 @@ export function randerSong(activeSong, songid, onSongEnd) {
         }
         return randomID
     }
+}
+
+export function toggleShuffle() {
+    autoSuffleBtn = !autoSuffleBtn;
+
+    if (autoSuffleBtn) {
+        loopSong = false;
+    }
+
+    return {
+        shuffle: autoSuffleBtn,
+        loop: loopSong
+    };
+}
+
+export function toggleLoop() {
+    loopSong = !loopSong;
+
+    if (loopSong) {
+        autoSuffleBtn = false;
+    }
+
+    return {
+        shuffle: autoSuffleBtn,
+        loop: loopSong
+    };
 }
 
 
