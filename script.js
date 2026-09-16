@@ -120,7 +120,7 @@ function playSong(songID) {
 }
 
 
-// OPEN FULL PLAYER
+
 audioContainer.addEventListener("click", (event) => {
 
     if (
@@ -149,7 +149,7 @@ audioContainer.addEventListener("click", (event) => {
 });
 
 
-// CLOSE FULL PLAYER
+
 closePlayer.addEventListener("click", () => {
 
     gsap.to(fullPlayer, {
