@@ -8,6 +8,9 @@ let currentSong = null;
 let currentPlayBtn = null;
 let activeSong = null;
 let songID = null;
+const audioContainer = document.querySelector(".Audio-Container");
+const closePlayer = document.querySelector(".close-player");
+const fullPlayer = document.querySelector(".full-player");
 
 
 themeBtn.addEventListener("click", () => {
@@ -116,9 +119,10 @@ function playSong(songID) {
     });
 }
 
-document.querySelector(".Audio-Container").addEventListener("click", (event) => {
 
-    // Agar button, range ya audio par click hua hai
+// OPEN FULL PLAYER
+audioContainer.addEventListener("click", (event) => {
+
     if (
         event.target.closest("button") ||
         event.target.closest("input") ||
@@ -127,16 +131,40 @@ document.querySelector(".Audio-Container").addEventListener("click", (event) => 
         return;
     }
 
-    document.querySelector(".full-player").classList.add("active");
+    fullPlayer.classList.add("active");
 
+    gsap.fromTo(
+        fullPlayer,
+        {
+            y: "100%",
+            opacity: 0
+        },
+        {
+            y: "0%",
+            opacity: 1,
+            duration: 0.5,
+            ease: "power3.out"
+        }
+    );
 });
 
-const closePlayer = document.querySelector(".close-player");
-const fullPlayer = document.querySelector(".full-player");
 
+// CLOSE FULL PLAYER
 closePlayer.addEventListener("click", () => {
-    fullPlayer.classList.remove("active");
+
+    gsap.to(fullPlayer, {
+        y: "100%",
+        opacity: 0,
+        duration: 0.45,
+        ease: "power3.in",
+
+        onComplete: () => {
+            fullPlayer.classList.remove("active");
+        }
+    });
+
 });
+
 
 const fullShuffle = document.querySelector(".full-shuffle");
 const fullLoop = document.querySelector(".full-loop");
