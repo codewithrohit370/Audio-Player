@@ -122,28 +122,44 @@ export function randerSong(activeSong, songid, onSongEnd) {
     const fullNext = document.querySelector(".full-next");
     const fullPrevious = document.querySelector(".full-previous");
 
-    const fullRange = document.querySelector(".full-song-time");
-
     const fullCurrentTime = document.querySelector(".full-current-time");
     const fullDuration = document.querySelector(".full-duration");
+
+    const fullRange = document.querySelector(".full-song-time");
+
+    let isDragging = false;
+
+    fullRange.onpointerdown = () => {
+        isDragging = true;
+    };
+
+    fullRange.onpointerup = () => {
+        isDragging = false;
+    };
+
+    fullRange.onpointercancel = () => {
+        isDragging = false;
+    };
+
+    fullRange.oninput = () => {
+        if (!currentSong.duration) return;
+
+        currentSong.currentTime =
+            (Number(fullRange.value) / 100) * currentSong.duration;
+    };
 
     fullPlay.onclick = () => {
         playAndPauseSong(currentSong);
     };
 
     fullNext.onclick = () => {
-        onSongEnd(songid );
+        onSongEnd(songid);
     };
 
     fullPrevious.onclick = () => {
         onSongEnd(songid - 2);
     };
 
-    fullRange.oninput = () => {
-        if (!currentSong.duration) return;
-        currentSong.currentTime =
-            (fullRange.value / 100) * currentSong.duration;
-    };
 
     currentSong.addEventListener("play", () => {
 
@@ -269,7 +285,7 @@ export function randerSong(activeSong, songid, onSongEnd) {
 
 
         // Full player
-        if (fullRange) {
+        if (fullRange && !isDragging) {
             fullRange.value = value;
         }
 

@@ -121,47 +121,88 @@
    PROGRESS BAR
 ========================= */
 
-.full-song-time {
-    width: min(700px, 90vw);
+/* =========================
+   PROGRESS BAR
+========================= */
 
+.full-song-time {
+    display: block;
+    width: min(700px, 90vw);
     height: 5px;
 
-    margin-top: 35px;
+    margin: 35px auto 0;
 
     appearance: none;
+    -webkit-appearance: none;
 
+    border: none;
     border-radius: 10px;
 
     background: #303742;
 
     cursor: pointer;
+    pointer-events: auto;
+
+    position: relative;
+    z-index: 100;
+}
+
+/* Chrome / Edge */
+
+.full-song-time::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 10px;
+    background: #303742;
 }
 
 .full-song-time::-webkit-slider-thumb {
     appearance: none;
+    -webkit-appearance: none;
 
     width: 15px;
     height: 15px;
 
+    margin-top: -5px;
+
+    border: 3px solid white;
     border-radius: 50%;
 
     background: #ff00ff;
 
-    border: 3px solid white;
+    box-shadow: 0 0 12px rgba(255, 0, 255, .6);
 
-    box-shadow:
-        0 0 12px rgba(255, 0, 255, .6);
+    cursor: grab;
+}
+
+.full-song-time::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
+
+/* Firefox */
+
+.full-song-time::-moz-range-track {
+    height: 5px;
+    border-radius: 10px;
+    background: #303742;
+}
+
+.full-song-time::-moz-range-progress {
+    height: 5px;
+    border-radius: 10px;
+    background: #ff00ff;
 }
 
 .full-song-time::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 
+    border: 3px solid white;
     border-radius: 50%;
 
     background: #ff00ff;
 
-    border: 3px solid white;
+    cursor: grab;
 }
 
 
