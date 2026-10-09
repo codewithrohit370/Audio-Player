@@ -60,12 +60,6 @@
 }
 
 
-
-
-/* =========================
-   ALBUM COVER
-========================= */
-
 .full-album-cover {
     object-fit: cover;
 
@@ -400,6 +394,23 @@
 /* =========================
    MOBILE
 ========================= */
+
+
+/* Desktop: Full player hidden */
+@media (min-width: 769px) {
+    .full-player {
+        display: none !important;
+    }
+}
+
+/* Mobile: Full player allowed */
+@media (max-width: 768px) {
+    .full-player.active {
+        display: flex;
+    }
+}
+
+
 
 @media (max-width: 600px) {
 
