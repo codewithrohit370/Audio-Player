@@ -189,4 +189,59 @@ fullLoop.addEventListener("click", () => {
 
 
 
+const searchInput = document.querySelector(".searchInput");
+const songList = document.querySelector(".song-list");
+
+// Search songs by name or artist
+searchInput.addEventListener("input", () => {
+
+    const searchValue = searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const filteredSongs = songs.filter((song) => {
+        return (
+            song.songName.toLowerCase().includes(searchValue) ||
+            song.ArtistName.toLowerCase().includes(searchValue)
+        );
+    });
+
+    // Display matching songs
+    songList.innerHTML = "";
+
+    if (filteredSongs.length === 0) {
+        songList.innerHTML = `
+            <p class="no-results">
+                No songs found!
+            </p>
+        `;
+        return;
+    }
+
+    filteredSongs.forEach((song) => {
+        songList.innerHTML += `
+            <div class="song-item" data-song-id="${song.songId}">
+                <img src="${song.songImage}" alt="${song.songName}">
+
+                <div>
+                    <h4>${song.songName}</h4>
+                    <p>${song.ArtistName}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    // Add click events to filtered songs
+    document.querySelectorAll(".song-item").forEach((button) => {
+        button.addEventListener("click", () => {
+            songID = Number(button.dataset.songId);
+            playSong(songID);
+        });
+    });
+
+});
+
+
+
+
 
