@@ -1,11 +1,10 @@
-import { playAndPauseSong, formatTime, songPlay, randerSong, toggleShuffle, toggleLoop } from "./script/functions.js";
+import { playAndPauseSong, songPlay, randerSong, toggleShuffle, toggleLoop } from "./script/functions.js";
 import { songs } from "./script/song.js";
 
 
 const themeBtn = document.querySelector(".theme-toggle");
 const icon = themeBtn.querySelector("i");
 let currentSong = null;
-let currentPlayBtn = null;
 let activeSong = null;
 let songID = null;
 const audioContainer = document.querySelector(".Audio-Container");
@@ -60,6 +59,7 @@ songs.forEach((song) => {
                 </div>
             `
 })
+
 document.querySelector('.song-list').innerHTML = html;
 
 let songbtn = document.querySelectorAll('.song-item')
