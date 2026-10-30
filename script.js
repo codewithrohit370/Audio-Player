@@ -26,6 +26,7 @@ themeBtn.addEventListener("click", () => {
 
 });
 
+
 document.body.addEventListener("keydown", (event) => {
 
     if (!currentSong) return;
@@ -80,12 +81,14 @@ function playSong(songID) {
     const button = document.querySelector(
         `[data-song-id="${songID}"]`
     );
+
+    activeSong = button;
+    activeSong.classList.add("active-song");
+    
     if (activeSong) {
         activeSong.classList.remove("active-song");
     }
 
-    activeSong = button;
-    activeSong.classList.add("active-song");
 
     document.querySelector(".Audio-Container").innerHTML = songPlay(songID);
     currentSong = document.querySelector(".audio");
@@ -192,7 +195,7 @@ fullLoop.addEventListener("click", () => {
 const searchInput = document.querySelector(".searchInput");
 const songList = document.querySelector(".song-list");
 
-// Search songs by name or artist
+
 searchInput.addEventListener("input", () => {
 
     const searchValue = searchInput.value
@@ -231,7 +234,6 @@ searchInput.addEventListener("input", () => {
         `;
     });
 
-    // Add click events to filtered songs
     document.querySelectorAll(".song-item").forEach((button) => {
         button.addEventListener("click", () => {
             songID = Number(button.dataset.songId);
