@@ -31,6 +31,7 @@ document.body.addEventListener("keydown", (event) => {
 
     if (!currentSong) return;
 
+
     if (event.code === "Space") {
         event.preventDefault();
         playAndPauseSong(currentSong);
@@ -82,12 +83,16 @@ function playSong(songID) {
         `[data-song-id="${songID}"]`
     );
 
-    activeSong = button;
+
+    document.querySelectorAll(".song-item").forEach(item => {
+    item.classList.remove("active-song");
+});
+
+activeSong = button;
+
+if (activeSong) {
     activeSong.classList.add("active-song");
-    
-    if (activeSong) {
-        activeSong.classList.remove("active-song");
-    }
+}
 
 
     document.querySelector(".Audio-Container").innerHTML = songPlay(songID);
@@ -242,8 +247,4 @@ searchInput.addEventListener("input", () => {
     });
 
 });
-
-
-
-
 
