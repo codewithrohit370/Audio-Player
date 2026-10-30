@@ -27,10 +27,17 @@ themeBtn.addEventListener("click", () => {
 });
 
 
+
 document.body.addEventListener("keydown", (event) => {
+   
+    if (
+        event.target.matches("input, textarea, select") ||
+        event.target.isContentEditable
+    ) {
+        return;
+    }
 
     if (!currentSong) return;
-
 
     if (event.code === "Space") {
         event.preventDefault();
@@ -38,14 +45,14 @@ document.body.addEventListener("keydown", (event) => {
     }
 
     if (event.code === "ArrowRight") {
-        document.querySelector(".nextBtn").click();
+        document.querySelector(".nextBtn")?.click();
     }
 
     if (event.code === "ArrowLeft") {
-        document.querySelector(".previousBtn").click();
+        document.querySelector(".previousBtn")?.click();
     }
-
 });
+
 
 
 
